@@ -121,7 +121,7 @@
   const image = 'assets/' + (area === 'cv' ? 'adso' : area === 'teaching' ? 'jorge' : 'guglielmo') + '-cinematic.webp';
   actor.innerHTML = '<img class="abbey-actor-cinematic" src="' + image + '" alt="" draggable="false">';
   document.body.appendChild(actor);
-  const westernImage='assets/' + (area==='cv'?'western-tuco':area==='teaching'?'western-sentenza':'western-biondo') + '.svg';
+  const westernImage='assets/' + (area==='cv'?'western-tuco':area==='teaching'?'western-sentenza':'western-biondo') + '-cutout.webp';
   function syncCharacter(){const character=actor.querySelector('.abbey-actor-cinematic');if(character)character.src=document.body.classList.contains('west-on')?westernImage:image;}
   document.addEventListener('site-theme-change',syncCharacter);
   syncCharacter();
