@@ -10,6 +10,16 @@ const ext=preceding.querySelector('a[href^="http"]');if(ext){const more=document
 trigger.addEventListener('click',()=>{const next=!entry.classList.contains('is-open');entry.classList.toggle('is-open',next);trigger.setAttribute('aria-expanded',String(next))});}}
 prepareCatalog();
 if(guide){guide.setAttribute('aria-hidden','true');const face=document.getElementById('rose-face');if(face){face.disabled=true;face.tabIndex=-1;face.setAttribute('aria-hidden','true')}const story=characters[key];if(story){guide.classList.add('active');portrait.src='assets/'+story+'.svg';portrait.alt=''}const dialog=guide.querySelector('.rose-dialog');if(dialog)dialog.remove()}
-function sync(){const on=document.body.classList.contains('rose-on');btn.textContent=on?(isItalian?'Ritorna al presente':'Return to the present'):(isItalian?'Modalità Medioevo':'Go to Middle Age');btn.setAttribute('aria-pressed',String(on))}
-btn.addEventListener('click',()=>{document.body.classList.toggle('rose-on');try{localStorage.setItem('rose-abbey-theme',document.body.classList.contains('rose-on')?'on':'off')}catch{}sync()});try{if(localStorage.getItem('rose-abbey-theme')==='on')document.body.classList.add('rose-on')}catch{}sync();
+/* Three interchangeable layouts: contemporary, abbey and Far West. */
+const westBtn=document.createElement('button');westBtn.id='west-toggle';westBtn.type='button';westBtn.className='theme-toggle';westBtn.textContent=isItalian?'Modalità Western':'Go to Far West';btn.insertAdjacentElement('afterend',westBtn);
+const link=document.createElement('link');link.rel='stylesheet';link.href='western-theme.css';document.head.appendChild(link);
+const cineLink=document.createElement('link');cineLink.rel='stylesheet';cineLink.href='western-cinematic.css';document.head.appendChild(cineLink);
+const wrap=btn.closest('.theme-control');if(wrap)wrap.classList.add('theme-control-stacked');
+function mode(){return document.body.classList.contains('west-on')?'western':(document.body.classList.contains('rose-on')?'medieval':'modern')}
+function sync(){const m=mode();btn.textContent=m==='medieval'?(isItalian?'Ritorna al presente':'Return to the present'):(isItalian?'Modalità Medioevo':'Go to Middle Age');btn.setAttribute('aria-pressed',String(m==='medieval'));westBtn.textContent=m==='western'?(isItalian?'Ritorna al presente':'Return to the present'):(isItalian?'Modalità Western':'Go to Far West');westBtn.setAttribute('aria-pressed',String(m==='western'));
+ document.dispatchEvent(new CustomEvent('site-theme-change',{detail:{theme:m}}));}
+function setMode(m){document.body.classList.toggle('rose-on',m!=='modern');document.body.classList.toggle('west-on',m==='western');try{localStorage.setItem('site-theme',m);localStorage.setItem('rose-abbey-theme',m==='medieval'?'on':'off')}catch(e){}sync()}
+btn.addEventListener('click',()=>setMode(mode()==='medieval'?'modern':'medieval'));
+westBtn.addEventListener('click',()=>setMode(mode()==='western'?'modern':'western'));
+let stored='modern';try{stored=localStorage.getItem('site-theme')||(localStorage.getItem('rose-abbey-theme')==='on'?'medieval':'modern')}catch(e){}setMode(['medieval','western','modern'].includes(stored)?stored:'modern');
 })();
