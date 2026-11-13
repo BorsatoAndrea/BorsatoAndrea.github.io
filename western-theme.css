@@ -1,0 +1,32 @@
+@import url('https://fonts.googleapis.com/css2?family=Rye&family=Special+Elite&family=Libre+Baskerville:wght@400;700&display=swap');
+/* A second themed mode based on a sun-baked western frontier. The content is shared. */
+.theme-control-stacked{display:flex!important;flex-direction:column;align-items:flex-end;gap:9px}
+.theme-control-stacked #west-toggle{position:relative;z-index:1}
+body.rose-on.west-on{--bg:#4a3022;--paper:#ead2a3;--ink:#35251e;--link:#82502c;--border:#ad7d53;--head:#251c19;--font:'Libre Baskerville',Georgia,serif;background:#5c3925 url('assets/western-scene.svg') center top/cover fixed no-repeat}
+body.rose-on.west-on header{background:linear-gradient(180deg,#271b16,#4e2b1d);border-bottom:4px solid #c49052;box-shadow:0 9px 22px #100b08ba}
+body.rose-on.west-on .brand{font-family:'Rye',Georgia,serif;font-size:21px;color:#f3c990;letter-spacing:.025em}
+body.rose-on.west-on .nav a{font-family:'Special Elite',Georgia,serif;color:#f3d9a6;font-size:14px}
+body.rose-on.west-on .nav a[aria-current]{color:#fff1c9;border-color:#e3b56f}
+body.rose-on.west-on main{background:radial-gradient(ellipse at 50% 10%,#f9e9c6 0,#eacb94 60%,#d8ac70 100%);border:4px solid #825434;outline:8px solid #33231b;box-shadow:inset 0 0 0 6px #a06a40,inset 0 0 0 9px #573a2a,0 20px 60px #160d08c9}
+body.rose-on.west-on main::before{content:'✯   THE FRONTIER ARCHIVE   ✯';font-family:'Rye',serif;font-size:12px;letter-spacing:.15em;color:#87512d;border-color:#ab7b4a}
+body.rose-on.west-on main::after{border:1px dashed #a3764a80}
+body.rose-on.west-on .theme-toggle{background:linear-gradient(#f9ddb0,#dbac6f);border:2px solid #83512e;color:#513022;font-family:'Rye',Georgia,serif;font-size:12px;box-shadow:0 3px 0 #3e2719,0 7px 16px #1c120a80}
+body.rose-on.west-on .page-title,body.rose-on.west-on .abbey-shelf-heading{font-family:'Rye',Georgia,serif;color:#723e24;letter-spacing:.02em;font-variant:normal}
+body.rose-on.west-on .abbey-book-title,body.rose-on.west-on .content-block h2{font-family:'Special Elite',Georgia,serif;color:#442a1d}
+body.rose-on.west-on .content-block p,body.rose-on.west-on .content-block li{font-family:'Libre Baskerville',Georgia,serif;color:#3d2e26}
+body.rose-on.west-on .abbey-volume-row{border:1px solid #b2834d;background:linear-gradient(95deg,#f3dcb1,#f8e8c9 55%,#e5c390);box-shadow:4px 5px 0 #7b4b282d,0 8px 17px #39201520}
+body.rose-on.west-on .abbey-book-cover,body.rose-on.west-on .abbey-flying-book .abbey-book-cover{background:linear-gradient(90deg,#261c17 0 20%,#64341e 21% 49%,#a0693a 50% 81%,#3d2419 82%);border:2px solid #3d2318;box-shadow:4px 5px 0 #d4ad74,7px 7px 0 #412318,8px 9px 13px #22140c86}
+body.rose-on.west-on .abbey-book-cover::before{border:1px solid #cd9859}
+body.rose-on.west-on .abbey-book-cover>span::before{content:'★';font-size:15px;color:#e8c184}
+body.rose-on.west-on .abbey-book-spread{border:10px solid #603b25;box-shadow:inset 0 0 0 2px #bf8a52,0 8px 0 #ad744c,0 14px 0 #523722}
+body.rose-on.west-on .abbey-page{background:radial-gradient(ellipse at 60% 20%,#fff1cd 0,#efd3a0 65%,#cfa875 100%)}
+body.rose-on.west-on .abbey-first-page{border-right:2px solid #a26a3e}
+body.rose-on.west-on .abbey-second-page{border-left:1px solid #d5aa72}
+body.rose-on.west-on .abbey-cover-title{font-family:'Rye',Georgia,serif;font-size:25px;color:#653b25}
+body.rose-on.west-on .abbey-page-contents{font-family:'Libre Baskerville',Georgia,serif;font-size:14px;color:#443020}
+body.rose-on.west-on .abbey-page-contents p{color:#443020}
+body.rose-on.west-on .abbey-ornament{font-size:50px;color:#9b612e}
+body.rose-on.west-on .home-pub-book .home-book-icon{background:linear-gradient(#72401c,#3f2619)!important;border:1px solid #4d2d18}
+body.rose-on.west-on footer{background:#2b2019;color:#d9bb8d;border-top:2px solid #ae774c}
+body.rose-on.west-on .abbey-actor .abbey-actor-cinematic{filter:drop-shadow(1px 8px 8px #241009a2)}
+@media(max-width:700px){.theme-control-stacked{align-items:stretch}.theme-control-stacked button{width:max-content;align-self:flex-end}body.rose-on.west-on main{outline-width:4px;padding-left:20px;padding-right:20px}body.rose-on.west-on .abbey-cover-title{font-size:20px}}
