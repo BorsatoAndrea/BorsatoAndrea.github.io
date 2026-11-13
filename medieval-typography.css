@@ -1,0 +1,37 @@
+
+/* Original Google Sites home bibliography stays intact. Each book links directly to the verified DOI. */
+.home-publications .home-publication-row{position:relative;padding-left:39px!important;min-height:28px;margin:0 0 17px!important}
+.home-pub-book{position:absolute;top:0;left:0;width:29px;height:32px;display:inline-flex;align-items:center;justify-content:center;text-decoration:none!important;transition:transform .18s ease;border-radius:3px}
+.home-pub-book:hover{transform:translateY(-3px)}
+.home-pub-book:focus-visible{outline:3px solid #486781;outline-offset:3px}
+.home-book-icon{display:block;position:relative;width:28px;height:28px;filter:drop-shadow(1px 2px 2px #0003)}
+.home-book-icon i{display:block;position:absolute;bottom:2px;width:8px;height:22px;border-radius:1px 2px 1px 1px;background:#4f705e;border:1px solid #3b5949;box-shadow:inset 2px 0 1px #0003}
+.home-book-icon i:nth-child(1){left:1px;height:19px;transform:rotate(-5deg)}
+.home-book-icon i:nth-child(2){left:10px;height:25px;background:#90545c;border-color:#704049}
+.home-book-icon i:nth-child(3){left:20px;height:20px;background:#b68a54;border-color:#89683f;transform:rotate(4deg)}
+.home-book-icon i::before,.home-book-icon i::after{content:'';position:absolute;left:1px;right:1px;border-top:1px solid #e8d5ae}
+.home-book-icon i::before{top:5px}.home-book-icon i::after{bottom:5px}
+body.rose-on .home-publications{padding:14px 15px 8px;border:1px solid #b8a078;background:#fff8e322}
+body.rose-on .home-book-icon i{background:#64412a;border-color:#372315}
+body.rose-on .home-book-icon i:nth-child(2){background:#7e4b26;border-color:#402719}
+body.rose-on .home-book-icon i:nth-child(3){background:#916535;border-color:#463019}
+/* Readable manuscript typography, without changing academic wording or professional mode. */
+body.rose-on{font-family:'IM Fell English',Georgia,serif;letter-spacing:.006em}
+body.rose-on .brand,body.rose-on .page-title,body.rose-on .nav a,body.rose-on .theme-toggle,
+body.rose-on .abbey-shelf-heading,body.rose-on .abbey-book-title,
+body.rose-on .abbey-cover-title,body.rose-on .content-block h1,
+body.rose-on .content-block h2,body.rose-on .content-block h3{
+ font-family:'MedievalSharp','IM Fell English',Georgia,serif;letter-spacing:.025em;font-variant:normal
+}
+body.rose-on .brand{font-size:26px}
+body.rose-on .page-title{font-size:36px;font-weight:400}
+body.rose-on .page-title::first-letter{font-family:'UnifrakturCook','MedievalSharp',Georgia,serif;color:#8f4126;font-size:1.55em;line-height:.85}
+body.rose-on .content-block p,body.rose-on .content-block li,
+body.rose-on .abbey-book-subtitle,body.rose-on .abbey-page-contents,
+body.rose-on .abbey-page-contents p,body.rose-on .abbey-page-contents li,
+body.rose-on .abbey-shelf-note{font-family:'IM Fell English',Georgia,serif}
+body.rose-on .abbey-page-contents{font-size:17px;line-height:1.68}
+body.rose-on .abbey-page-contents p{line-height:1.72!important}
+body.rose-on .abbey-book-title{font-size:20px}
+body.rose-on .content-block p{line-height:1.74}
+@media(max-width:680px){body.rose-on .page-title{font-size:29px}body.rose-on .brand{font-size:22px}}

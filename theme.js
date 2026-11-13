@@ -1,0 +1,15 @@
+(()=>{'use strict';
+const btn=document.getElementById('rose-toggle'),guide=document.getElementById('rose-guide'),portrait=document.getElementById('rose-portrait-img');if(!btn)return;
+const key=document.body.dataset.page;const characters={CV:'adso',CV_1:'adso',Research:'guglielmo',Ricerca:'guglielmo',Teaching:'jorge',Insegnamenti:'jorge'};const isItalian=['Italiano','CV_1','Ricerca','Insegnamenti','page'].includes(key);
+function prepareCatalog(){if(key!=='Research'&&key!=='Ricerca')return;const main=document.querySelector('main'),blocks=[...main.querySelectorAll(':scope > .content-block')];
+for(let i=1;i<blocks.length;i++){const abs=blocks[i];if(!/^(?:Abstract|Sommario)\s*:/i.test((abs.textContent||'').trim()))continue;const preceding=blocks[i-1];if(!preceding||preceding.parentElement!==main||!/(?:20\d{2}|19\d{2})/.test(preceding.textContent||''))continue;
+const entry=document.createElement('section');entry.className='book-entry';const header=document.createElement('div');header.className='book-header';const body=document.createElement('div');body.className='book-abstract';body.id='book-abstract-'+i;
+const trigger=document.createElement('button');trigger.type='button';trigger.className='book-trigger';trigger.setAttribute('aria-expanded','false');trigger.setAttribute('aria-controls',body.id);trigger.setAttribute('aria-label',isItalian?'Apri o chiudi abstract e collegamento':'Open or close abstract and publication link');trigger.innerHTML='<span class="book-icon" aria-hidden="true"></span>';
+main.insertBefore(entry,preceding);entry.appendChild(header);header.appendChild(trigger);header.appendChild(preceding);entry.appendChild(body);body.appendChild(abs);
+const ext=preceding.querySelector('a[href^="http"]');if(ext){const more=document.createElement('a');more.className='book-original-link';more.href=ext.href;more.target='_blank';more.rel='noopener noreferrer';more.textContent=isItalian?'Vai alla pubblicazione':'Open publication';body.appendChild(more)}
+trigger.addEventListener('click',()=>{const next=!entry.classList.contains('is-open');entry.classList.toggle('is-open',next);trigger.setAttribute('aria-expanded',String(next))});}}
+prepareCatalog();
+if(guide){guide.setAttribute('aria-hidden','true');const face=document.getElementById('rose-face');if(face){face.disabled=true;face.tabIndex=-1;face.setAttribute('aria-hidden','true')}const story=characters[key];if(story){guide.classList.add('active');portrait.src='assets/'+story+'.svg';portrait.alt=''}const dialog=guide.querySelector('.rose-dialog');if(dialog)dialog.remove()}
+function sync(){const on=document.body.classList.contains('rose-on');btn.textContent=on?'Return to the present':'Go to Middle Age';btn.setAttribute('aria-pressed',String(on))}
+btn.addEventListener('click',()=>{document.body.classList.toggle('rose-on');try{localStorage.setItem('rose-abbey-theme',document.body.classList.contains('rose-on')?'on':'off')}catch{}sync()});try{if(localStorage.getItem('rose-abbey-theme')==='on')document.body.classList.add('rose-on')}catch{}sync();
+})();

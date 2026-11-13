@@ -1,0 +1,82 @@
+{
+  "Most.html": {
+    "original_chars": 0,
+    "migrated_chars": 0,
+    "blocks": 1,
+    "links": 0,
+    "images": 1,
+    "text_exact": true
+  },
+  "Italiano.html": {
+    "original_chars": 4225,
+    "migrated_chars": 4222,
+    "blocks": 6,
+    "links": 24,
+    "images": 6,
+    "text_exact": false
+  },
+  "Insegnamenti.html": {
+    "original_chars": 9844,
+    "migrated_chars": 9844,
+    "blocks": 10,
+    "links": 6,
+    "images": 0,
+    "text_exact": true
+  },
+  "English.html": {
+    "original_chars": 4024,
+    "migrated_chars": 4021,
+    "blocks": 6,
+    "links": 23,
+    "images": 6,
+    "text_exact": false
+  },
+  "Ricerca.html": {
+    "original_chars": 23071,
+    "migrated_chars": 23071,
+    "blocks": 32,
+    "links": 13,
+    "images": 0,
+    "text_exact": true
+  },
+  "page.html": {
+    "original_chars": 0,
+    "migrated_chars": 0,
+    "blocks": 1,
+    "links": 0,
+    "images": 1,
+    "text_exact": true
+  },
+  "Research.html": {
+    "original_chars": 20408,
+    "migrated_chars": 20408,
+    "blocks": 31,
+    "links": 20,
+    "images": 0,
+    "text_exact": true
+  },
+  "Teaching.html": {
+    "original_chars": 8700,
+    "migrated_chars": 8700,
+    "blocks": 10,
+    "links": 5,
+    "images": 0,
+    "text_exact": true
+  },
+  "CV_1.html": {
+    "original_chars": 7108,
+    "migrated_chars": 7108,
+    "blocks": 3,
+    "links": 36,
+    "images": 0,
+    "text_exact": true
+  },
+  "CV.html": {
+    "original_chars": 6608,
+    "migrated_chars": 6608,
+    "blocks": 3,
+    "links": 35,
+    "images": 0,
+    "text_exact": true
+  }
+}
