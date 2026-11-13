@@ -102,3 +102,46 @@ body.rose-on .abbey-actor:not(.abbey-walking):not(.abbey-reaching):not(.abbey-ho
 body.rose-on .abbey-actor:not(.abbey-walking) .abbey-actor-head{animation:abbey-watch 9s ease-in-out infinite}
 body.rose-on .abbey-actor:not(.abbey-walking) .abbey-actor-cloak{animation:abbey-breathe 5.5s ease-in-out infinite}
 @media(prefers-reduced-motion:reduce){body.rose-on .abbey-actor{animation:none!important}}
+
+
+/* Cinematic characters: transparent full-body figures, no names, no speeches, no cartoon robe. */
+body.rose-on .abbey-actor{width:124px;height:194px;left:10px;bottom:8px;overflow:visible;background:transparent;filter:none}
+body.rose-on .abbey-actor .abbey-actor-cinematic{
+ display:block;width:100%;height:100%;object-fit:contain;object-position:center bottom;
+ filter:drop-shadow(0 8px 7px rgba(0,0,0,.66));
+ transform-origin:center 82%;backface-visibility:hidden;will-change:transform;
+}
+body.rose-on .abbey-actor:not(.abbey-walking):not(.abbey-reaching):not(.abbey-holding) .abbey-actor-cinematic{
+ animation:abbey-cinematic-observe 9s ease-in-out infinite;
+}
+body.rose-on .abbey-actor.abbey-walking .abbey-actor-cinematic{animation:abbey-cinematic-step .32s ease-in-out infinite alternate}
+body.rose-on .abbey-actor.abbey-reaching .abbey-actor-cinematic{transform:rotate(7deg) translateX(5px);transition:transform .3s ease}
+body.rose-on .abbey-actor.abbey-holding::after{
+ content:'✣';position:absolute;left:102px;top:95px;width:18px;height:25px;
+ border:2px solid #b18d52;border-radius:2px 4px 3px 2px;
+ background:linear-gradient(100deg,#3d2116,#85532e,#3e2418);
+ box-shadow:2px 3px 8px #0007;color:#e6c77e;text-align:center;
+ font-family:Georgia,serif;font-size:13px;line-height:23px;
+ animation:abbey-held-volume .3s ease both;
+}
+@keyframes abbey-cinematic-observe{
+ 0%,100%{transform:translateY(0) rotate(0deg)}
+ 30%{transform:translateY(-2px) rotate(1deg)}
+ 55%{transform:translateY(0) rotate(-1deg)}
+}
+@keyframes abbey-cinematic-step{
+ from{transform:translateY(-2px) rotate(-3deg)}
+ to{transform:translateY(3px) rotate(3deg)}
+}
+@keyframes abbey-held-volume{
+ from{opacity:0;transform:translate(-15px,15px) rotate(-40deg)}
+ to{opacity:1;transform:translate(0,0) rotate(-12deg)}
+}
+@media(max-width:700px){
+ body.rose-on .abbey-actor{width:92px;height:144px;left:0;bottom:0;scale:1}
+ body.rose-on .abbey-actor.abbey-holding::after{left:77px;top:70px;scale:.75;transform-origin:center}
+}
+@media(prefers-reduced-motion:reduce){
+ body.rose-on .abbey-actor .abbey-actor-cinematic{animation:none!important;transition:none!important}
+ body.rose-on .abbey-actor.abbey-holding::after{animation:none!important}
+}

@@ -118,10 +118,8 @@
   const actor = document.createElement('div');
   actor.className = 'abbey-actor';
   actor.setAttribute('aria-hidden', 'true');
-  const image = 'assets/' + (area === 'cv' ? 'adso' : area === 'teaching' ? 'jorge' : 'guglielmo') + '.svg';
-  actor.innerHTML =
-    '<div class="abbey-actor-halo"></div><div class="abbey-actor-head"><img alt="" src="' +
-    image + '"></div><div class="abbey-actor-cloak"><span class="abbey-arm abbey-arm-left"></span><span class="abbey-arm abbey-arm-right"></span><span class="abbey-actor-held-book"></span></div><div class="abbey-actor-legs"><i></i><i></i></div>';
+  const image = 'assets/' + (area === 'cv' ? 'adso' : area === 'teaching' ? 'jorge' : 'guglielmo') + '-cinematic.webp';
+  actor.innerHTML = '<img class="abbey-actor-cinematic" src="' + image + '" alt="" draggable="false">';
   document.body.appendChild(actor);
 
   const layer = document.createElement('div');
