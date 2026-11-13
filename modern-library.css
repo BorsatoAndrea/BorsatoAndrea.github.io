@@ -1,0 +1,177 @@
+
+/* Contemporary Library: professional academic theme. Medieval theme is untouched. */
+body:not(.rose-on)[data-page="CV"],body:not(.rose-on)[data-page="CV_1"]{
+ --library-primary:#50695c;--library-a:#50695c;--library-b:#864f54;--library-c:#b88b59;
+}
+body:not(.rose-on)[data-page="Research"],body:not(.rose-on)[data-page="Ricerca"]{
+ --library-primary:#864f54;--library-a:#50695c;--library-b:#864f54;--library-c:#b88b59;
+}
+body:not(.rose-on)[data-page="Teaching"],body:not(.rose-on)[data-page="Insegnamenti"]{
+ --library-primary:#b88b59;--library-a:#50695c;--library-b:#864f54;--library-c:#b88b59;
+}
+body:not(.rose-on) main>.abbey-shelf{display:block;max-width:960px;margin:0 auto 50px;padding:0 0 12px;}
+body:not(.rose-on)[data-page="CV"] main>.content-block,
+body:not(.rose-on)[data-page="CV_1"] main>.content-block,
+body:not(.rose-on)[data-page="Teaching"] main>.content-block,
+body:not(.rose-on)[data-page="Insegnamenti"] main>.content-block,
+body:not(.rose-on)[data-page="Research"] main>.content-block,
+body:not(.rose-on)[data-page="Research"] main>.book-entry,
+body:not(.rose-on)[data-page="Ricerca"] main>.content-block,
+body:not(.rose-on)[data-page="Ricerca"] main>.book-entry{display:none!important}
+body:not(.rose-on) .abbey-shelf-heading{
+  font-family:Montserrat,Arial,sans-serif;letter-spacing:.025em;
+  font-size:15px;color:#3b4856;font-weight:700;margin:26px 0 14px;
+  padding-bottom:10px;border-bottom:1px solid #e5e9ed;
+}
+body:not(.rose-on) .abbey-shelf-heading:first-child{margin-top:0}
+body:not(.rose-on) .abbey-volume-row{
+  display:flex;gap:20px;align-items:center;min-height:106px;
+  margin:0 0 12px;padding:16px 20px 16px 14px;
+  border:1px solid #e1e5e9;border-left:4px solid var(--library-primary,#50695c);
+  border-radius:7px;background:#fff;
+  box-shadow:0 2px 9px #1b2a3920;transition:transform .18s,box-shadow .18s,border-color .18s;
+}
+body:not(.rose-on) .abbey-volume-row:hover{
+  transform:translateY(-2px);box-shadow:0 7px 22px #1b2a3925;
+  border-color:#ccd3d9;border-left-color:var(--library-primary);
+}
+body:not(.rose-on) .abbey-volume-button{
+  flex:0 0 90px;width:90px;height:86px;
+  display:flex;align-items:center;justify-content:center;padding:5px;
+  background:transparent;border:0;border-radius:6px;cursor:pointer;
+}
+body:not(.rose-on) .abbey-volume-button:focus-visible{outline:3px solid #486a9f;outline-offset:2px}
+body:not(.rose-on) .abbey-book-cover{
+  width:74px;height:78px;display:block;position:relative;transform:none;
+  background:none;border:0;border-radius:0;box-shadow:none;
+  transition:transform .23s cubic-bezier(.2,.8,.2,1);filter:drop-shadow(2px 3px 2px #0003);
+}
+body:not(.rose-on) .abbey-book-cover::before,
+body:not(.rose-on) .abbey-book-cover::after,
+body:not(.rose-on) .abbey-book-cover>span{
+  display:block;position:absolute;bottom:6px;border-radius:3px 3px 1px 1px;
+  border:1px solid #28313a3d;
+  box-shadow:inset 3px 0 2px #0003,inset -2px 0 2px #fff3;
+  background-image:linear-gradient(180deg,transparent 0 13%,#fff8 13% 14%,transparent 14% 19%,#fff8 19% 20%,transparent 20% 79%,#fff7 79% 80%,transparent 80% 86%,#fff7 86% 87%,transparent 87%);
+}
+body:not(.rose-on) .abbey-book-cover::before{
+  content:'';left:3px;width:20px;height:57px;background-color:var(--library-a,#50695c);
+  transform:rotate(-3deg);z-index:1;
+}
+body:not(.rose-on) .abbey-book-cover::after{
+  content:'';left:52px;width:19px;height:58px;background-color:var(--library-c,#b88b59);
+  transform:rotate(3deg);z-index:1;
+}
+body:not(.rose-on) .abbey-book-cover>span{
+  left:27px;width:22px;height:70px;background-color:var(--library-b,#864f54);
+  z-index:2;
+}
+body:not(.rose-on) .abbey-book-cover>span::before{content:none}
+body:not(.rose-on) .abbey-volume-button:hover .abbey-book-cover,
+body:not(.rose-on) .abbey-volume-button:focus-visible .abbey-book-cover{transform:translateY(-4px) rotate(-3deg)}
+body:not(.rose-on) .abbey-volume-button.abbey-picked .abbey-book-cover{
+  transform:scale(.87) translateY(-5px);opacity:.63
+}
+body:not(.rose-on) .abbey-book-label{min-width:0;flex:1}
+body:not(.rose-on) .abbey-book-title{
+  font-family:Montserrat,Arial,sans-serif;font-size:15px;line-height:1.55;
+  font-weight:600;color:#273342;
+}
+body:not(.rose-on) .abbey-book-subtitle{font-size:13px;color:#697787;margin-top:5px}
+body:not(.rose-on) .abbey-shelf-note{padding:3px 9px 16px;color:#53606e;font-size:13px}
+body:not(.rose-on) .abbey-shelf-note .content-block{margin:0}
+/* A modern book opens into a clean two-page academic reading window. */
+body:not(.rose-on) .abbey-reading-layer.abbey-visible{
+  display:flex;position:fixed;inset:0;z-index:100;align-items:center;justify-content:center;
+  overflow-y:auto;padding:30px 18px;background:#111e2bc9;backdrop-filter:blur(4px);
+  animation:modern-library-backdrop .2s ease both;
+}
+body:not(.rose-on) .abbey-book-stage{
+  width:min(1080px,100%);max-height:calc(100vh - 65px);padding:12px 5px 12px;
+  filter:drop-shadow(0 22px 34px #1320306b);
+}
+body:not(.rose-on) .abbey-book-close{
+  position:absolute;z-index:5;right:-4px;top:-12px;width:42px;height:42px;
+  background:#fff;color:#324152;border:1px solid #c6ced6;border-radius:50%;
+  box-shadow:0 3px 8px #13203022;font:26px/1 Arial,sans-serif;cursor:pointer;
+}
+body:not(.rose-on) .abbey-book-spread{
+  position:relative;display:grid;grid-template-columns:minmax(200px,.7fr) minmax(0,1.3fr);
+  height:min(700px,calc(100vh - 100px));border:1px solid #d8dfe6;
+  border-left:8px solid var(--library-primary,#50695c);
+  border-radius:10px;background:#fff;box-shadow:0 2px 0 #edf1f5,0 14px 28px #15202d38;
+  overflow:hidden;perspective:1300px;
+}
+body:not(.rose-on) .abbey-book-spread::after{
+  content:'';position:absolute;top:0;bottom:0;left:34.3%;width:9px;
+  background:linear-gradient(90deg,#73818c25,#ffffff05,#42546625);
+  z-index:3;pointer-events:none;box-shadow:1px 0 5px #16253410;
+}
+body:not(.rose-on) .abbey-page{min-width:0;overflow:hidden;position:relative;background:#fff}
+body:not(.rose-on) .abbey-first-page{
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  padding:33px;background:linear-gradient(160deg,#f7f9fa 0%,#ebf0f3 100%);
+  border-right:1px solid #dce4ea;text-align:center;
+  transform-origin:right center;transform:rotateY(60deg);
+  transition:transform .68s cubic-bezier(.2,.8,.2,1);
+}
+body:not(.rose-on) .abbey-second-page{
+  border-left:1px solid #f0f2f4;
+  transform-origin:left center;transform:rotateY(-60deg);
+  transition:transform .7s cubic-bezier(.2,.8,.2,1) .08s;
+}
+body:not(.rose-on) .abbey-reading-layer.abbey-book-opened .abbey-first-page,
+body:not(.rose-on) .abbey-reading-layer.abbey-book-opened .abbey-second-page{transform:rotateY(0)}
+body:not(.rose-on) .abbey-ornament{display:none}
+body:not(.rose-on) .abbey-cover-title{
+  font-family:Montserrat,Arial,sans-serif;font-size:clamp(17px,2vw,26px);
+  font-variant:normal;line-height:1.35;color:#273b4c;letter-spacing:-.01em;font-weight:600;
+  overflow-wrap:anywhere;
+}
+body:not(.rose-on) .abbey-cover-title::before{
+  content:'';display:block;width:50px;height:5px;margin:0 auto 25px;
+  background:var(--library-primary,#50695c);border-radius:5px;
+}
+body:not(.rose-on) .abbey-page-contents{
+  height:100%;overflow:auto;overscroll-behavior:contain;
+  padding:36px clamp(20px,3.8vw,52px);
+  font:14px/1.72 Montserrat,Arial,sans-serif;color:#2d3946;
+}
+body:not(.rose-on) .abbey-page-contents :is(p,h1,h2,h3){color:#2d3946}
+body:not(.rose-on) .abbey-page-contents p{text-align:left!important;line-height:1.72!important}
+body:not(.rose-on) .abbey-page-contents :is(a,a span){color:#1a668d!important;text-decoration:underline!important}
+body:not(.rose-on) .abbey-page-contents :is(span[style*="color"]){color:inherit!important}
+body:not(.rose-on) .abbey-page-contents .content-block{margin-bottom:18px}
+body:not(.rose-on) .abbey-page-contents .book-abstract{display:block!important;border:0;padding:0;margin:0}
+body:not(.rose-on) .abbey-page-contents .book-original-link{display:none!important}
+body:not(.rose-on) .abbey-page-contents img{max-width:100%;height:auto}
+body:not(.rose-on) .abbey-reading-layer.abbey-visible.abbey-book-opened .abbey-book-stage{
+  animation:modern-library-enter .3s ease both
+}
+@keyframes modern-library-backdrop{from{opacity:0}to{opacity:1}}
+@keyframes modern-library-enter{
+  from{opacity:.55;transform:translateY(14px) scale(.96)}
+  to{opacity:1;transform:translateY(0) scale(1)}
+}
+@media(max-width:700px){
+  body:not(.rose-on) .abbey-volume-row{padding:10px 11px;gap:11px;min-height:91px}
+  body:not(.rose-on) .abbey-volume-button{flex-basis:65px;width:65px}
+  body:not(.rose-on) .abbey-book-cover{scale:.85;transform-origin:center}
+  body:not(.rose-on) .abbey-book-title{font-size:13.5px}
+  body:not(.rose-on) .abbey-book-stage{max-height:calc(100vh - 26px)}
+  body:not(.rose-on) .abbey-reading-layer.abbey-visible{padding:12px}
+  body:not(.rose-on) .abbey-book-spread{grid-template-columns:1fr;height:calc(100vh - 60px)}
+  body:not(.rose-on) .abbey-first-page{display:none}
+  body:not(.rose-on) .abbey-book-spread::after{display:none}
+  body:not(.rose-on) .abbey-second-page{transform:rotateY(-28deg)}
+  body:not(.rose-on) .abbey-page-contents{padding:30px 20px}
+  body:not(.rose-on) .abbey-book-close{right:3px;top:-9px}
+}
+@media(prefers-reduced-motion:reduce){
+  body:not(.rose-on) .abbey-volume-row,
+  body:not(.rose-on) .abbey-volume-button .abbey-book-cover,
+  body:not(.rose-on) .abbey-page{transition:none!important}
+  body:not(.rose-on) .abbey-reading-layer,
+  body:not(.rose-on) .abbey-book-stage{animation:none!important}
+  body:not(.rose-on) .abbey-page{transform:none!important}
+}

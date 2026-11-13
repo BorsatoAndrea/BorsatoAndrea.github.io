@@ -205,7 +205,14 @@
       copy.classList.remove('book-entry');
       content.appendChild(copy);
     });
-    try{await bringBook(item.button);await flyToReadingDesk(item.button);}catch(err){}
+    try{
+      if(document.body.classList.contains('rose-on')){
+        await bringBook(item.button);await flyToReadingDesk(item.button);
+      }else{
+        item.button.classList.add('abbey-picked');
+        if(!reduceMotion())await delay(170);
+      }
+    }catch(err){}
     layer.classList.add('abbey-visible');
     layer.setAttribute('aria-hidden','false');
     document.body.classList.add('abbey-modal-open');
