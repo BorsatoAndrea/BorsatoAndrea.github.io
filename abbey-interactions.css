@@ -93,3 +93,12 @@ body.rose-on .abbey-flying-book .abbey-book-cover{display:block}
  .abbey-page{transform:none!important;transition:none!important}
  .abbey-reading-layer{animation:none!important}
 }
+
+/* Small independent idle movements make the monks feel present without stealing focus. */
+@keyframes abbey-watch{0%,25%,100%{transform:rotate(0deg)}45%{transform:rotate(5deg)}65%{transform:rotate(-3deg)}}
+@keyframes abbey-breathe{0%,100%{transform:scaleY(1)}50%{transform:scaleY(1.018)}}
+@keyframes abbey-linger{0%,100%{translate:0 0}40%{translate:10px 0}70%{translate:17px -1px}}
+body.rose-on .abbey-actor:not(.abbey-walking):not(.abbey-reaching):not(.abbey-holding){animation:abbey-linger 16s ease-in-out infinite}
+body.rose-on .abbey-actor:not(.abbey-walking) .abbey-actor-head{animation:abbey-watch 9s ease-in-out infinite}
+body.rose-on .abbey-actor:not(.abbey-walking) .abbey-actor-cloak{animation:abbey-breathe 5.5s ease-in-out infinite}
+@media(prefers-reduced-motion:reduce){body.rose-on .abbey-actor{animation:none!important}}
