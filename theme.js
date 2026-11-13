@@ -10,6 +10,6 @@ const ext=preceding.querySelector('a[href^="http"]');if(ext){const more=document
 trigger.addEventListener('click',()=>{const next=!entry.classList.contains('is-open');entry.classList.toggle('is-open',next);trigger.setAttribute('aria-expanded',String(next))});}}
 prepareCatalog();
 if(guide){guide.setAttribute('aria-hidden','true');const face=document.getElementById('rose-face');if(face){face.disabled=true;face.tabIndex=-1;face.setAttribute('aria-hidden','true')}const story=characters[key];if(story){guide.classList.add('active');portrait.src='assets/'+story+'.svg';portrait.alt=''}const dialog=guide.querySelector('.rose-dialog');if(dialog)dialog.remove()}
-function sync(){const on=document.body.classList.contains('rose-on');btn.textContent=on?'Return to the present':'Go to Middle Age';btn.setAttribute('aria-pressed',String(on))}
+function sync(){const on=document.body.classList.contains('rose-on');btn.textContent=on?(isItalian?'Ritorna al presente':'Return to the present'):(isItalian?'Modalità Medioevo':'Go to Middle Age');btn.setAttribute('aria-pressed',String(on))}
 btn.addEventListener('click',()=>{document.body.classList.toggle('rose-on');try{localStorage.setItem('rose-abbey-theme',document.body.classList.contains('rose-on')?'on':'off')}catch{}sync()});try{if(localStorage.getItem('rose-abbey-theme')==='on')document.body.classList.add('rose-on')}catch{}sync();
 })();
