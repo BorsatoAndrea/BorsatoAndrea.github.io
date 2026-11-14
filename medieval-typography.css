@@ -1,6 +1,6 @@
 
 /* Original Google Sites home bibliography stays intact. Each book links directly to the verified DOI. */
-.home-publications .home-publication-row{position:relative;padding-left:39px!important;min-height:28px;margin:0 0 17px!important}
+.home-publications .home-publication-row{position:relative;min-height:28px;margin:0 0 17px!important}
 .home-pub-book{position:absolute;top:0;left:0;width:29px;height:32px;display:inline-flex;align-items:center;justify-content:center;text-decoration:none!important;transition:transform .18s ease;border-radius:3px}
 .home-pub-book:hover{transform:translateY(-3px)}
 .home-pub-book:focus-visible{outline:3px solid #486781;outline-offset:3px}
