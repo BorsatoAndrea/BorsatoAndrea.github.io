@@ -82,7 +82,19 @@
       const title = plain(original[i].querySelector('h2, h3') || original[i]);
       if (!title) continue;
       const content = original.slice(i, i+2);
-      makeBook(title, content);
+      // Surface supervised students directly on the shelf, not only inside the book.
+      // Both language versions use the same rule and retain the full original content.
+      let subtitle = '';
+      if (/^(Student supervision|Supervisione degli studenti)$/i.test(title)) {
+        const students = plain(content[1] || content[0]);
+        const emma = students.includes('Emma Greeff');
+        const sarah = students.includes('Sarah Pinel');
+        const visible = [];
+        if (emma) visible.push(isIt ? 'Emma Greeff (da gennaio 2026, EPOG-JM, Torino)' : 'Emma Greeff (since January 2026, EPOG-JM, Turin)');
+        if (sarah) visible.push('Sarah Pinel (2023–2024)');
+        subtitle = visible.join(' · ');
+      }
+      makeBook(title, content, subtitle);
     }
   } else if (area === 'research') {
     for (let i=0; i<original.length; i++) {
