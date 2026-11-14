@@ -14,7 +14,17 @@ if(guide){guide.setAttribute('aria-hidden','true');const face=document.getElemen
 const westBtn=document.createElement('button');westBtn.id='west-toggle';westBtn.type='button';westBtn.className='theme-toggle';westBtn.textContent=isItalian?'Modalità Western':'Go to Far West';btn.insertAdjacentElement('afterend',westBtn);
 const link=document.createElement('link');link.rel='stylesheet';link.href='western-theme.css';document.head.appendChild(link);
 const cineLink=document.createElement('link');cineLink.rel='stylesheet';cineLink.href='western-cinematic.css?v=20261113b';document.head.appendChild(cineLink);
-const wrap=btn.closest('.theme-control');if(wrap)wrap.classList.add('theme-control-stacked');
+const wrap=btn.closest('.theme-control');
+if(wrap){
+  wrap.classList.add('theme-control-stacked');
+  // Keep the language choice and both theme buttons together at the far right of the navigation.
+  const nav=document.querySelector('header .nav');
+  if(nav){
+    const italiano=nav.querySelector('a[href="Italiano.html"]');
+    if(italiano)nav.appendChild(italiano);
+    nav.appendChild(wrap);
+  }
+}
 function mode(){return document.body.classList.contains('west-on')?'western':(document.body.classList.contains('rose-on')?'medieval':'modern')}
 function sync(){const m=mode();btn.textContent=m==='medieval'?(isItalian?'Ritorna al presente':'Return to the present'):(isItalian?'Modalità Medioevo':'Go to Middle Age');btn.setAttribute('aria-pressed',String(m==='medieval'));westBtn.textContent=m==='western'?(isItalian?'Ritorna al presente':'Return to the present'):(isItalian?'Modalità Western':'Go to Far West');westBtn.setAttribute('aria-pressed',String(m==='western'));
  document.dispatchEvent(new CustomEvent('site-theme-change',{detail:{theme:m}}));}
