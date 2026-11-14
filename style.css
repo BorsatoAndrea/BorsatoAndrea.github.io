@@ -195,3 +195,34 @@ body[data-page="Italiano"] main>.content-block.home-sunset img{
  body[data-page="English"] main>.content-block.home-sunset img,
  body[data-page="Italiano"] main>.content-block.home-sunset img{height:auto;max-height:240px}
 }
+
+/* Home-page academic profile icons: compact, aligned, clickable in every theme. */
+body[data-page="English"] .home-contact-column .home-social-links,
+body[data-page="Italiano"] .home-contact-column .home-social-links{
+  display:flex;flex-wrap:wrap;align-items:center;gap:7px;
+  margin:16px 0 18px;padding:0;min-width:0;
+}
+.home-contact-column .home-social-links .social-profile-link{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:36px;height:36px;flex:0 0 36px;
+  padding:5px;border:1px solid #7775;border-radius:8px;
+  color:var(--profile-ink);background:#fffdf9;
+  text-decoration:none;transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease;
+}
+.home-contact-column .home-social-links .social-profile-link:hover{
+  transform:translateY(-2px);box-shadow:0 3px 9px #0002;border-color:currentColor;
+}
+.home-contact-column .home-social-links .social-profile-link:focus-visible{
+  outline:3px solid #b58845;outline-offset:2px;
+}
+.home-contact-column .home-social-links .social-profile-link svg{
+  display:block;width:25px;height:25px;max-width:100%;max-height:100%;
+  fill:currentColor;flex-shrink:0;
+}
+.home-social-links .social-linkedin{--profile-ink:#0a66c2}
+.home-social-links .social-orcid{--profile-ink:#a6ce39}
+.home-social-links .social-googlescholar{--profile-ink:#4285f4}
+.home-social-links .social-researchgate{--profile-ink:#00a99d}
+@media(prefers-reduced-motion:reduce){
+  .home-contact-column .home-social-links .social-profile-link{transition:none}
+}
