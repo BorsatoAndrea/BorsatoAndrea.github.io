@@ -139,3 +139,59 @@ body.rose-on header .nav .theme-control{margin:0!important}
 /* Separate the Bergamo and Strasbourg addresses without splitting the contact column. */
 body[data-page="English"] main>.home-contact-column>.content-block:first-child p:nth-of-type(6){margin-top:0}
 body[data-page="English"] main>.home-contact-column>.content-block:first-child p:nth-of-type(7){margin-top:17px}
+
+
+/* Stable, semantic two-column home layout shared by English and Italiano. */
+body[data-page="English"] main,body[data-page="Italiano"] main{
+ display:grid;grid-template-columns:192px minmax(0,1fr);
+ column-gap:26px;row-gap:16px;align-items:start;align-content:start;
+}
+body[data-page="English"] main>.content-block.home-portrait,
+body[data-page="Italiano"] main>.content-block.home-portrait{
+ grid-column:1;grid-row:1;justify-self:start;margin:0;
+}
+body[data-page="English"] main>.content-block.home-sunset,
+body[data-page="Italiano"] main>.content-block.home-sunset{
+ grid-column:2;grid-row:1;margin:0;
+}
+body[data-page="English"] main>.content-block.home-bio,
+body[data-page="Italiano"] main>.content-block.home-bio{
+ grid-column:2;grid-row:2;min-width:0;
+}
+body[data-page="English"] main>.content-block.home-publications-list,
+body[data-page="Italiano"] main>.content-block.home-publications-list{
+ grid-column:1/-1;grid-row:3;
+}
+body[data-page="English"] main>.content-block.home-portrait img,
+body[data-page="Italiano"] main>.content-block.home-portrait img{
+ display:block;width:192px;height:192px;aspect-ratio:1;
+ border-radius:50%;object-fit:cover;object-position:61% 42%;
+}
+body[data-page="English"] main>.content-block.home-sunset img,
+body[data-page="Italiano"] main>.content-block.home-sunset img{
+ width:100%;height:285px;object-fit:cover;
+}
+@media(max-width:700px){
+ body[data-page="English"] main,body[data-page="Italiano"] main{
+  grid-template-columns:110px minmax(0,1fr);column-gap:12px;
+ }
+ body[data-page="English"] main>.content-block.home-portrait img,
+ body[data-page="Italiano"] main>.content-block.home-portrait img{width:110px;height:110px}
+ body[data-page="English"] main>.content-block.home-sunset img,
+ body[data-page="Italiano"] main>.content-block.home-sunset img{height:190px}
+}
+@media(max-width:640px){
+ body[data-page="English"] main,body[data-page="Italiano"] main{grid-template-columns:minmax(0,1fr)}
+ body[data-page="English"] main>.content-block.home-portrait,
+ body[data-page="Italiano"] main>.content-block.home-portrait{grid-column:1;grid-row:1}
+ body[data-page="English"] main>.content-block.home-sunset,
+ body[data-page="Italiano"] main>.content-block.home-sunset{grid-column:1;grid-row:2}
+ body[data-page="English"] main>.home-contact-column,
+ body[data-page="Italiano"] main>.home-contact-column{grid-column:1;grid-row:3}
+ body[data-page="English"] main>.content-block.home-bio,
+ body[data-page="Italiano"] main>.content-block.home-bio{grid-column:1;grid-row:4}
+ body[data-page="English"] main>.content-block.home-publications-list,
+ body[data-page="Italiano"] main>.content-block.home-publications-list{grid-column:1;grid-row:5}
+ body[data-page="English"] main>.content-block.home-sunset img,
+ body[data-page="Italiano"] main>.content-block.home-sunset img{height:auto;max-height:240px}
+}
