@@ -138,8 +138,8 @@ body .abbey-reading-layer.abbey-scroll-reading .abbey-book-close{
 /* On the home pages, keep book icons for books and use parchment for journal papers.
    The whole publication row opens the publication link, with keyboard access. */
 .home-publications .home-publication-row{
-  position:relative;padding:12px 12px 12px 75px;
-  margin:0 0 12px;min-height:70px;
+  position:relative;padding:14px 16px 14px 86px;
+  margin:0 0 12px;min-height:76px;
   border:1px solid #b8a18265;border-radius:10px;
   background:color-mix(in srgb,var(--paper,#fff) 86%,transparent);
   box-shadow:0 2px 7px #1c1c1c0b;
