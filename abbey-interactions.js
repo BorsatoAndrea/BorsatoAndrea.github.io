@@ -1,6 +1,7 @@
 /* The abbey mode is an optional layer. Original page HTML is never edited or removed. */
 (() => {
   'use strict';
+  const init=()=>{
   const page = document.body.dataset.page || '';
   const isIt = ['CV_1','Ricerca','Insegnamenti'].includes(page);
   const area = ['CV','CV_1'].includes(page) ? 'cv' :
@@ -260,4 +261,4 @@
   });
   const themeButton=document.getElementById('rose-toggle');
   themeButton?.addEventListener('click',()=>{if(!document.body.classList.contains('rose-on'))closeBook();});
-})();
+};const ready=window.__cmsReady;if(ready&&typeof ready.then==='function')ready.then(init,init);else init();})();
