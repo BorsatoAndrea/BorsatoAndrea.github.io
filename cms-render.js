@@ -80,9 +80,13 @@
       setMarkup(wrapper, citation);
       const ps = [...wrapper.querySelectorAll(':scope > p')];
       if (ps.length) {
-        for (const p of ps) publications.appendChild(p);
+        for (const p of ps) {
+          p.dataset.publicationKind = publication.kind === 'book' ? 'book' : 'paper';
+          publications.appendChild(p);
+        }
       } else {
         const p = document.createElement('p');
+        p.dataset.publicationKind = publication.kind === 'book' ? 'book' : 'paper';
         p.append(...wrapper.childNodes);
         publications.appendChild(p);
       }

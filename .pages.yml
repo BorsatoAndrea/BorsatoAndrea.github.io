@@ -86,6 +86,16 @@ content:
           - name: doi
             label: "DOI / URL"
             type: string
+          - name: kind
+            label: "Tipo di pubblicazione"
+            type: select
+            required: true
+            options:
+              values:
+                - name: paper
+                  label: "Articolo scientifico · pergamena"
+                - name: book
+                  label: "Libro · volume"
           - name: citation_en
             label: "Citation (English)"
             type: rich-text
