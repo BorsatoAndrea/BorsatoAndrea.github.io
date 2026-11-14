@@ -1,0 +1,270 @@
+# Pages CMS: edit both languages in one form.
+# IMPORTANT: select branch draft/google-sites-migration to publish changes.
+media:
+  input: assets/cms
+  output: /assets/cms
+  categories: [image]
+  rename: safe
+
+settings:
+  content:
+    merge: true
+  commit:
+    templates:
+      update: "CMS: aggiorna {path}"
+      create: "CMS: crea {path}"
+      delete: "CMS: elimina {path}"
+
+content:
+  - name: home
+    label: "01 · Home e contatti"
+    type: file
+    path: cms/home.json
+    format: json
+    operations:
+      delete: false
+    fields:
+      - name: portrait_image
+        label: "Fotografia personale (entrambe le lingue)"
+        type: image
+      - name: sunset_image
+        label: "Fotografia tramonto (entrambe le lingue)"
+        type: image
+      - name: english
+        label: "English"
+        type: object
+        fields:
+          - name: biography
+            label: "Biography (English)"
+            type: rich-text
+            required: true
+            options:
+              format: html
+              media: false
+          - name: contacts
+            label: "Contacts (English)"
+            type: rich-text
+            required: true
+            options:
+              format: html
+              media: false
+      - name: italiano
+        label: "Italiano"
+        type: object
+        fields:
+          - name: biography
+            label: "Biografia (italiano)"
+            type: rich-text
+            required: true
+            options:
+              format: html
+              media: false
+          - name: contacts
+            label: "Contatti (italiano)"
+            type: rich-text
+            required: true
+            options:
+              format: html
+              media: false
+
+  - name: latest-publications
+    label: "02 · Ultime pubblicazioni (home)"
+    type: file
+    path: cms/publications.json
+    format: json
+    operations:
+      delete: false
+    fields:
+      - name: publications
+        label: "Pubblicazioni, condivise EN / IT"
+        type: object
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{doi}"
+        fields:
+          - name: doi
+            label: "DOI / URL"
+            type: string
+          - name: citation_en
+            label: "Citation (English)"
+            type: rich-text
+            required: true
+            options:
+              format: html
+              media: false
+          - name: citation_it
+            label: "Citazione (italiano)"
+            type: rich-text
+            required: true
+            options:
+              format: html
+              media: false
+
+  - name: teaching
+    label: "03 · Insegnamenti / Teaching"
+    type: file
+    path: cms/teaching.json
+    format: json
+    operations:
+      delete: false
+    fields:
+      - name: courses
+        label: "Corsi bilingui"
+        type: object
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{title_it}"
+        fields:
+          - name: title_en
+            label: "Course title (English)"
+            type: string
+            required: true
+          - name: title_it
+            label: "Titolo corso (italiano)"
+            type: string
+            required: true
+          - name: description_en
+            label: "Course description (English)"
+            type: rich-text
+            required: true
+            options:
+              format: html
+              media: false
+          - name: description_it
+            label: "Descrizione del corso (italiano)"
+            type: rich-text
+            required: true
+            options:
+              format: html
+              media: false
+
+  - name: supervision
+    label: "04 · Supervisione studenti"
+    type: file
+    path: cms/students.json
+    format: json
+    operations:
+      delete: false
+    fields:
+      - name: students
+        label: "Studenti (stessa lista per EN e IT)"
+        type: object
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{name}"
+        fields:
+          - name: name
+            label: "Nome"
+            type: string
+            required: true
+          - name: period_en
+            label: "Dates / status (English)"
+            type: string
+            required: true
+          - name: period_it
+            label: "Date / stato (italiano)"
+            type: string
+            required: true
+          - name: description_en
+            label: "Supervision details (English)"
+            type: rich-text
+            required: true
+            options:
+              format: html
+              media: false
+          - name: description_it
+            label: "Dettagli della supervisione (italiano)"
+            type: rich-text
+            required: true
+            options:
+              format: html
+              media: false
+
+  - name: research
+    label: "05 · Archivio di ricerca / Research"
+    type: file
+    path: cms/research.json
+    format: json
+    operations:
+      delete: false
+    fields:
+      - name: publications
+        label: "Archivio pubblicazioni (articoli, tesi, libri)"
+        type: object
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{label}"
+        fields:
+          - name: label
+            label: "Titolo di riferimento nel pannello (non appare sul sito)"
+            type: string
+            required: true
+          - name: section
+            label: "Sezione"
+            type: select
+            required: true
+            options:
+              values:
+                - name: articles
+                  label: "Articoli scientifici"
+                - name: phd
+                  label: "Tesi di dottorato"
+                - name: books
+                  label: "Libri e capitoli"
+          - name: doi
+            label: "DOI / URL"
+            type: string
+          - name: citation_en
+            label: "Publication citation (English)"
+            type: rich-text
+            required: true
+            options:
+              format: html
+              media: false
+          - name: citation_it
+            label: "Citazione della pubblicazione (italiano)"
+            type: rich-text
+            required: true
+            options:
+              format: html
+              media: false
+          - name: abstract_en
+            label: "Abstract (English)"
+            type: rich-text
+            options:
+              format: html
+              media: false
+          - name: abstract_it
+            label: "Sommario (italiano)"
+            type: rich-text
+            options:
+              format: html
+              media: false
+      - name: notes_en
+        label: "Archive note (English)"
+        type: rich-text
+        options:
+          format: html
+          media: false
+      - name: notes_it
+        label: "Nota archivio (italiano)"
+        type: rich-text
+        options:
+          format: html
+          media: false
+      - name: works_en
+        label: "Current works (English)"
+        type: rich-text
+        options:
+          format: html
+          media: false
+      - name: works_it
+        label: "Lavori in corso (italiano)"
+        type: rich-text
+        options:
+          format: html
+          media: false

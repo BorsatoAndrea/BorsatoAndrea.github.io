@@ -1,0 +1,18 @@
+{
+  "students": [
+    {
+      "name": "Emma Greeff",
+      "period_en": "01/2026 – present",
+      "period_it": "01/2026 – in corso",
+      "description_en": "<span>, first-year MSc student in </span><span style=\"font-style: italic\">Economic Analysis and Policy (EPOG-JM)</span><span> at the University of Turin, in collaboration with Prof. Aldo Geuna.</span>",
+      "description_it": "<span>, studentessa del primo anno del corso di laurea magistrale in </span><span style=\"font-style: italic\">Economic Analysis and Policy (EPOG-JM)</span><span> presso l’Università di Torino, in collaborazione con il Prof. Aldo Geuna.</span>"
+    },
+    {
+      "name": "Sarah Pinel",
+      "period_en": "2023–2024",
+      "period_it": "2023–2024",
+      "description_en": "<span>, Second year </span><span style=\"font-style: italic\">Magistère</span><span> student and first year Master’s student </span><span style=\"font-style: italic\">Macroéconomie et Politique Européenne </span><span>(</span><span style=\"font-style: italic\">Faculté de sciences économiques et de gestion</span><span>, University of Strasbourg). </span><span>Title of the report: \"</span><span style=\"font-style: italic\">Robotique et compétitivité internationale : une étude empirique de la loi de Thirlwall\"</span><span>.</span>",
+      "description_it": "<span>, Studentessa di secondo anno del </span><span style=\"font-style: italic\">Magistère</span><span>  e del primo anno di Laurea Magistrale (</span><a href=\"http://m.sc\" rel=\"noopener noreferrer\" style=\"color: inherit;text-decoration: none\" target=\"_blank\"><span style=\"text-decoration: underline\">M.Sc</span></a><span>.) in </span><span style=\"font-style: italic\">Macroéconomie et Politique Européenne </span><span>(</span><span style=\"font-style: italic\">Faculté de sciences économiques et de gestion</span><span>, Université de Strasbourg). </span><span>Titolo della tesi: \"</span><span style=\"font-style: italic\">Robotique et compétitivité internationale : une étude empirique de la loi de Thirlwall\"</span><span>.</span>"
+    }
+  ]
+}
