@@ -11,8 +11,8 @@ trigger.addEventListener('click',()=>{const next=!entry.classList.contains('is-o
 prepareCatalog();
 if(guide){guide.setAttribute('aria-hidden','true');const face=document.getElementById('rose-face');if(face){face.disabled=true;face.tabIndex=-1;face.setAttribute('aria-hidden','true')}const story=characters[key];if(story){guide.classList.add('active');portrait.src='assets/'+story+'.svg';portrait.alt=''}const dialog=guide.querySelector('.rose-dialog');if(dialog)dialog.remove()}
 /* Three interchangeable layouts: contemporary, abbey and Far West. */
-const westBtn=document.createElement('button');westBtn.id='west-toggle';westBtn.type='button';westBtn.className='theme-toggle';westBtn.textContent=isItalian?'Modalità Western':'Go to Far West';btn.insertAdjacentElement('afterend',westBtn);
-const link=document.createElement('link');link.rel='stylesheet';link.href='western-theme.css';document.head.appendChild(link);
+const westBtn=document.getElementById('west-toggle')||document.createElement('button');westBtn.id='west-toggle';westBtn.type='button';westBtn.className='theme-toggle';westBtn.textContent=isItalian?'Western':'Switch to Western';btn.insertAdjacentElement('afterend',westBtn);
+const link=document.createElement('link');link.rel='stylesheet';link.href='western-theme.css?v=20261114d';document.head.appendChild(link);
 const cineLink=document.createElement('link');cineLink.rel='stylesheet';cineLink.href='western-cinematic.css?v=20261113b';document.head.appendChild(cineLink);
 const wrap=btn.closest('.theme-control');
 if(wrap){
@@ -26,7 +26,7 @@ if(wrap){
   }
 }
 function mode(){return document.body.classList.contains('west-on')?'western':(document.body.classList.contains('rose-on')?'medieval':'modern')}
-function sync(){const m=mode();btn.textContent=m==='medieval'?(isItalian?'Ritorna al presente':'Return to the present'):(isItalian?'Modalità Medioevo':'Go to Middle Age');btn.setAttribute('aria-pressed',String(m==='medieval'));westBtn.textContent=m==='western'?(isItalian?'Ritorna al presente':'Return to the present'):(isItalian?'Modalità Western':'Go to Far West');westBtn.setAttribute('aria-pressed',String(m==='western'));
+function sync(){const m=mode();btn.textContent=m==='medieval'?(isItalian?'Ritorna al presente':'Return to the present'):(isItalian?'Medioevo':'Switch to Middle Age');btn.setAttribute('aria-pressed',String(m==='medieval'));westBtn.textContent=m==='western'?(isItalian?'Ritorna al presente':'Return to the present'):(isItalian?'Western':'Switch to Western');westBtn.setAttribute('aria-pressed',String(m==='western'));
  document.dispatchEvent(new CustomEvent('site-theme-change',{detail:{theme:m}}));}
 function setMode(m){document.body.classList.toggle('rose-on',m!=='modern');document.body.classList.toggle('west-on',m==='western');try{localStorage.setItem('site-theme',m);localStorage.setItem('rose-abbey-theme',m==='medieval'?'on':'off')}catch(e){}sync()}
 btn.addEventListener('click',()=>setMode(mode()==='medieval'?'modern':'medieval'));
