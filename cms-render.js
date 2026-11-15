@@ -79,14 +79,15 @@
       const wrapper = document.createElement('div');
       setMarkup(wrapper, citation);
       const ps = [...wrapper.querySelectorAll(':scope > p')];
+      const kind = publication.kind === 'book' || publication.kind === 'chapter' ? 'book' : 'paper';
       if (ps.length) {
         for (const p of ps) {
-          p.dataset.publicationKind = publication.kind === 'book' ? 'book' : 'paper';
+          p.dataset.publicationKind = kind;
           publications.appendChild(p);
         }
       } else {
         const p = document.createElement('p');
-        p.dataset.publicationKind = publication.kind === 'book' ? 'book' : 'paper';
+        p.dataset.publicationKind = kind;
         p.append(...wrapper.childNodes);
         publications.appendChild(p);
       }

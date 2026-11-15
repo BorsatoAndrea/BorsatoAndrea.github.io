@@ -42,6 +42,12 @@
     if (bolds.length) return bolds.sort((a,b) => b.length - a.length)[0];
     return plain(src).replace(/https?:\/\/\S+/g, '').slice(0, 250);
   }
+  function paperLabel(title) {
+    if (document.body.classList.contains('rose-on')) {
+      return (isIt ? 'Srotola la pergamena: ' : 'Unroll paper: ') + title;
+    }
+    return (isIt ? 'Apri l’articolo: ' : 'Open article: ') + title;
+  }
   function makeBook(title, contentNodes, subtitle, kind = 'book') {
     // The entire catalogue tile is a real button, including its title and icon.
     // This also enables Enter/Space activation without nested interactive controls.
@@ -49,9 +55,9 @@
     entry.type = 'button';
     entry.className = 'abbey-volume-row' + (kind === 'paper' ? ' abbey-paper-row' : '');
     entry.setAttribute('aria-haspopup', 'dialog');
-    entry.setAttribute('aria-label', (isIt
-      ? (kind === 'paper' ? 'Srotola la pergamena: ' : 'Apri il volume: ')
-      : (kind === 'paper' ? 'Unroll paper: ' : 'Open volume: ')) + title);
+    entry.setAttribute('aria-label', kind === 'paper'
+      ? paperLabel(title)
+      : (isIt ? 'Apri il volume: ' : 'Open volume: ') + title);
 
     const icon = document.createElement('span');
     icon.className = 'abbey-volume-button';
@@ -67,6 +73,11 @@
       cover.appendChild(document.createElement('span'));
     }
     icon.appendChild(cover);
+    if (kind === 'paper') {
+      const articleIcon = document.createElement('span');
+      articleIcon.className = 'scientific-article-icon';
+      icon.appendChild(articleIcon);
+    }
 
     const label = document.createElement('span');
     label.className = 'abbey-book-label';
@@ -174,6 +185,25 @@
   const coverTitle=layer.querySelector('.abbey-cover-title');
   const closeButton=layer.querySelector('.abbey-book-close');
   let busy=false, opener=null, cleanupFlying=null;
+  const closeBookLabel = closeButton.getAttribute('aria-label');
+
+  function setReadingStyle(isPaper) {
+    const isScroll = isPaper && document.body.classList.contains('rose-on');
+    const isArticle = isPaper && !isScroll;
+    layer.classList.toggle('abbey-scroll-reading', isScroll);
+    layer.classList.toggle('abbey-article-reading', isArticle);
+    const label = isScroll ? (isIt ? 'Pergamena aperta' : 'Unrolled paper')
+      : isArticle ? (isIt ? 'Articolo scientifico' : 'Research article')
+      : (isIt ? 'Libro aperto' : 'Open book');
+    layer.setAttribute('aria-label', label);
+    closeButton.setAttribute('aria-label', isArticle ? (isIt ? 'Chiudi l’articolo' : 'Close the article') : closeBookLabel);
+  }
+  document.addEventListener('site-theme-change', () => {
+    for (const item of items) {
+      if (item.kind === 'paper') item.button.setAttribute('aria-label', paperLabel(item.title));
+    }
+    if (opener?.classList.contains('abbey-paper-row')) setReadingStyle(true);
+  });
 
   function delay(ms) {return new Promise(resolve=>setTimeout(resolve,ms));}
   function reduceMotion() {return window.matchMedia('(prefers-reduced-motion: reduce)').matches;}
@@ -230,8 +260,7 @@
     if(busy || layer.classList.contains('abbey-visible'))return;
     busy=true;opener=item.button;
     const isPaper = item.kind === 'paper';
-    layer.classList.toggle('abbey-scroll-reading', isPaper);
-    layer.setAttribute('aria-label', isIt ? (isPaper ? 'Pergamena aperta' : 'Libro aperto') : (isPaper ? 'Unrolled paper' : 'Open book'));
+    setReadingStyle(isPaper);
     coverTitle.textContent=item.title;
     content.replaceChildren();
     item.contentNodes.forEach(node=> {
@@ -255,7 +284,7 @@
   }
   function closeBook(){
     if(!layer.classList.contains('abbey-visible'))return;
-    layer.classList.remove('abbey-book-opened','abbey-visible','abbey-scroll-reading');
+    layer.classList.remove('abbey-book-opened','abbey-visible','abbey-scroll-reading','abbey-article-reading');
     layer.setAttribute('aria-hidden','true');
     document.body.classList.remove('abbey-modal-open');
     actor.classList.remove('abbey-walking','abbey-reaching','abbey-holding');

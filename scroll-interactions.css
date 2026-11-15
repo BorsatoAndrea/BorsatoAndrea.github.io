@@ -1,5 +1,4 @@
-/* Unified clickable catalogue cards, animated scrolls for scholarly papers.
-   Shared by the English/Italian pages and modern, abbey and western themes. */
+/* Clickable publication cards and paper icons for all three themes. */
 
 /* A complete catalogue row is the accessible button, including its text. */
 .abbey-shelf button.abbey-volume-row{
@@ -66,10 +65,36 @@ body.rose-on .abbey-shelf .abbey-volume-row.abbey-picked .abbey-book-cover{
 .abbey-paper-row:hover .abbey-scroll-sheet,
 .abbey-paper-row:focus-visible .abbey-scroll-sheet,
 .abbey-paper-row.abbey-picked .abbey-scroll-sheet{transform:scaleY(1.4)}
-body:not(.rose-on) .abbey-paper-row{border-left-color:#956c41}
 body.rose-on.west-on .abbey-scroll-cover{--scroll-ink:#8a4c24}
 body.rose-on.west-on .abbey-scroll-sheet{filter:sepia(.22)}
 .abbey-flying-book .abbey-scroll-cover{display:block;transform:scale(.9)}
+
+/* The professional icon is a journal page with a heading, columns, and a chart. */
+.scientific-article-icon{
+  --article-accent:var(--library-primary,#864f54);
+  position:relative;display:block;flex:none;width:54px;height:66px;
+  border:1px solid #b5bec8;border-top:4px solid var(--article-accent);
+  border-radius:4px;background:#fff;
+  box-shadow:2px 3px 7px #25374b26;
+}
+.scientific-article-icon::before{
+  content:'';position:absolute;inset:14% 15%;
+  background:
+    linear-gradient(var(--article-accent),var(--article-accent)) left top / 80% 9% no-repeat,
+    repeating-linear-gradient(#657486 0 1px,transparent 1px 5px) left bottom / 43% 70% no-repeat,
+    repeating-linear-gradient(#657486 0 1px,transparent 1px 5px) right top 42% / 43% 22% no-repeat;
+}
+.scientific-article-icon::after{
+  content:'';position:absolute;right:15%;bottom:15%;width:30%;height:23%;
+  border-bottom:1px solid #657486;
+  background:
+    linear-gradient(var(--article-accent),var(--article-accent)) left bottom / 21% 44% no-repeat,
+    linear-gradient(var(--article-accent),var(--article-accent)) center bottom / 21% 67% no-repeat,
+    linear-gradient(var(--article-accent),var(--article-accent)) right bottom / 21% 100% no-repeat;
+}
+body.rose-on .scientific-article-icon,
+body:not(.rose-on) .abbey-paper-row .abbey-scroll-cover,
+body:not(.rose-on) .home-publications .home-publication-row .home-scroll-icon{display:none}
 
 /* Scholarly papers unroll into a parchment sheet, instead of opening a book. */
 body .abbey-reading-layer.abbey-scroll-reading .abbey-book-stage{
@@ -135,8 +160,7 @@ body .abbey-reading-layer.abbey-scroll-reading .abbey-book-close{
  .abbey-scroll-cover::after{bottom:7px}
 }
 
-/* On the home pages, keep book icons for books and use parchment for journal papers.
-   The whole publication row opens the publication link, with keyboard access. */
+/* The whole home publication row opens its link, with keyboard access. */
 .home-publications .home-publication-row{
   position:relative;padding:14px 16px 14px 86px;
   margin:0 0 12px;min-height:76px;
@@ -159,10 +183,12 @@ body .abbey-reading-layer.abbey-scroll-reading .abbey-book-close{
   position:relative;z-index:2;
 }
 .home-publications .home-publication-row .home-book-icon,
-.home-publications .home-publication-row .home-scroll-icon{
+.home-publications .home-publication-row .home-scroll-icon,
+.home-publications .scientific-article-icon{
   position:absolute;left:14px;top:50%;transform:translateY(-50%);
   display:block;width:46px;height:58px;z-index:2;
 }
+body.rose-on .home-publications .scientific-article-icon{display:none}
 .home-publications .home-scroll-icon{
   filter:drop-shadow(1px 2px 2px #21130d55);
 }
@@ -188,7 +214,7 @@ body .abbey-reading-layer.abbey-scroll-reading .abbey-book-close{
 .home-publications .home-publication-row:hover .home-scroll-icon i,
 .home-publications .home-publication-row:focus-within .home-scroll-icon i,
 .home-publications .home-publication-row.home-unrolling .home-scroll-icon i{transform:scaleY(1.5)}
-.home-publications .home-publication-row.home-unrolling{box-shadow:0 5px 19px #98673844}
+body.rose-on .home-publications .home-publication-row.home-unrolling{box-shadow:0 5px 19px #98673844}
 @media(prefers-reduced-motion:reduce){
  .abbey-scroll-cover .abbey-scroll-sheet,
  .home-scroll-icon i{transition:none}

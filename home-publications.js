@@ -1,4 +1,4 @@
-/* Bilingual home-page publication links: books remain volumes, journal papers become scrolls. */
+/* Bilingual home-page publication links with icons for books and articles. */
 (() => {
   'use strict';
   const init = () => {
@@ -24,9 +24,7 @@
 
       const text = p.textContent || '';
       const inferredBook = /Cambridge University Press|Elements in Evolutionary Economics|monograph|monografia/i.test(text) || /10\.1017\/978/i.test(href);
-      const kind = p.dataset.publicationKind === 'paper' || p.dataset.publicationKind === 'book'
-        ? p.dataset.publicationKind
-        : inferredBook ? 'book' : 'paper';
+      const kind = p.dataset.publicationKind || (inferredBook ? 'book' : 'paper');
 
       const a = document.createElement('a');
       a.className = 'home-pub-book';
@@ -40,7 +38,10 @@
         scroll.className = 'home-scroll-icon';
         scroll.setAttribute('aria-hidden', 'true');
         scroll.appendChild(document.createElement('i'));
-        a.appendChild(scroll);
+        const articleIcon = document.createElement('span');
+        articleIcon.className = 'scientific-article-icon';
+        articleIcon.setAttribute('aria-hidden', 'true');
+        a.append(scroll, articleIcon);
         p.classList.add('home-paper-row');
       } else {
         a.innerHTML = '<span class="home-book-icon" aria-hidden="true"><i></i><i></i><i></i></span>';
@@ -49,7 +50,7 @@
       p.insertBefore(a, p.firstChild);
       p.classList.add('home-publication-row');
       p.addEventListener('pointerdown', () => {
-        if (kind !== 'paper') return;
+        if (kind !== 'paper' || !document.body.classList.contains('rose-on')) return;
         p.classList.add('home-unrolling');
         window.setTimeout(() => p.classList.remove('home-unrolling'), 850);
       });

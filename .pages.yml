@@ -93,9 +93,11 @@ content:
             options:
               values:
                 - name: paper
-                  label: "Articolo scientifico · pergamena"
+                  label: "Articolo scientifico"
                 - name: book
-                  label: "Libro · volume"
+                  label: "Libro"
+                - name: chapter
+                  label: "Capitolo in volume"
           - name: citation_en
             label: "Citation (English)"
             type: rich-text
