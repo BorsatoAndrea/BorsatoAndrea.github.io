@@ -185,3 +185,40 @@ body:not(.rose-on) .abbey-reading-layer.abbey-visible.abbey-book-opened .abbey-b
   body:not(.rose-on) .abbey-book-stage{animation:none!important}
   body:not(.rose-on) .abbey-page{transform:none!important}
 }
+
+/* CV only: the original overview now reads on the page in every theme. */
+body[data-page="CV"] .abbey-cv-download,
+body[data-page="CV_1"] .abbey-cv-download {
+  color:inherit!important;
+  text-decoration:none!important;
+  cursor:pointer;
+  font:inherit;
+}
+body[data-page="CV"] .abbey-cv-download:focus-visible,
+body[data-page="CV_1"] .abbey-cv-download:focus-visible {
+  outline:3px solid #507c91;
+  outline-offset:3px;
+}
+body[data-page="CV"] .abbey-cv-download:hover .abbey-book-cover,
+body[data-page="CV_1"] .abbey-cv-download:hover .abbey-book-cover {
+  transform:translateY(-3px) rotate(-3deg);
+}
+body[data-page="CV"] .abbey-cv-summary,
+body[data-page="CV_1"] .abbey-cv-summary {
+  max-width:880px;
+  margin:24px auto 35px;
+  padding:0 6px;
+}
+body[data-page="CV"] .abbey-cv-summary .content-block,
+body[data-page="CV_1"] .abbey-cv-summary .content-block {
+  margin-bottom:26px;
+}
+body[data-page="CV"] .abbey-cv-summary p,
+body[data-page="CV_1"] .abbey-cv-summary p {
+  line-height:1.65;
+  margin-bottom:12px;
+}
+@media(max-width:700px){
+  body[data-page="CV"] .abbey-cv-summary,
+  body[data-page="CV_1"] .abbey-cv-summary {padding:0 4px;margin-top:18px}
+}
