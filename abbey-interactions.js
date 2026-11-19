@@ -107,10 +107,22 @@
     if (download) {
       const link = document.createElement('a');
       link.className = 'abbey-volume-row abbey-cv-download';
+      // Use the exact uploaded CV when its PDF has been placed in the site root.
+      // Until then, preserve the previously working university link.
       link.href = download.href;
       link.target = '_blank';
       link.rel = 'noopener noreferrer';
       link.setAttribute('aria-label', isIt ? 'Scarica il CV completo (PDF)' : 'Download the full CV (PDF)');
+      const localCV = new URL('Borsato_cv_2026.pdf', document.baseURI);
+      fetch(localCV.href, { method: 'HEAD', cache: 'no-store' })
+        .then(response => {
+          const type = response.headers.get('content-type') || '';
+          if (!response.ok || !/application\\/pdf/i.test(type)) return;
+          link.href = localCV.href;
+          link.download = 'Borsato_cv_2026.pdf';
+          link.removeAttribute('target');
+        })
+        .catch(() => {});
 
       const icon = document.createElement('span');
       icon.className = 'abbey-volume-button';
