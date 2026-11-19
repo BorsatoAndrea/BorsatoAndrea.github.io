@@ -117,7 +117,7 @@
       fetch(localCV.href, { method: 'HEAD', cache: 'no-store' })
         .then(response => {
           const type = response.headers.get('content-type') || '';
-          if (!response.ok || !/application\\/pdf/i.test(type)) return;
+          if (!response.ok || !type.toLowerCase().includes('application/pdf')) return;
           link.href = localCV.href;
           link.download = 'Borsato_cv_2026.pdf';
           link.removeAttribute('target');
