@@ -100,8 +100,43 @@
   }
 
   if (area === 'cv') {
-    heading(isIt ? 'Curriculum vitae' : 'Curriculum vitae');
-    makeBook('Curriculum vitae', original, isIt ? 'Formazione, incarichi, attività e riconoscimenti' : 'Education, appointments, activities and awards');
+    // The CV overview belongs on the page, not inside a reading dialog.
+    // The book icon is a regular link to the complete PDF.
+    heading('Curriculum vitae');
+    const download = original[0]?.querySelector('a[href]');
+    if (download) {
+      const link = document.createElement('a');
+      link.className = 'abbey-volume-row abbey-cv-download';
+      link.href = download.href;
+      link.target = '_blank';
+      link.rel = 'noopener noreferrer';
+      link.setAttribute('aria-label', isIt ? 'Scarica il CV completo (PDF)' : 'Download the full CV (PDF)');
+
+      const icon = document.createElement('span');
+      icon.className = 'abbey-volume-button';
+      icon.setAttribute('aria-hidden', 'true');
+      const cover = document.createElement('span');
+      cover.className = 'abbey-book-cover';
+      cover.appendChild(document.createElement('span'));
+      icon.appendChild(cover);
+      const label = document.createElement('span');
+      label.className = 'abbey-book-label';
+      const title = document.createElement('span');
+      title.className = 'abbey-book-title';
+      title.textContent = isIt ? 'Scarica il CV completo' : 'Download full CV';
+      const subtitle = document.createElement('span');
+      subtitle.className = 'abbey-book-subtitle';
+      subtitle.textContent = isIt ? 'Apri il documento PDF' : 'Open the PDF document';
+      label.append(title, subtitle);
+      link.append(icon, label);
+      shelf.appendChild(link);
+    }
+
+    const summary = document.createElement('section');
+    summary.className = 'abbey-cv-summary';
+    summary.setAttribute('aria-label', isIt ? 'Sintesi del curriculum' : 'Curriculum overview');
+    original.slice(download ? 1 : 0).forEach(node => summary.appendChild(node.cloneNode(true)));
+    shelf.appendChild(summary);
   } else if (area === 'teaching') {
     heading(isIt ? 'Insegnamenti e supervisione' : 'Courses and supervision');
     for (let i=0; i<original.length; i+=2) {
@@ -150,7 +185,7 @@
       }
     }
   }
-  if (!items.length) return;
+  if (!items.length && area !== 'cv') return;
   main.insertBefore(shelf, original[0]);
 
   const actor = document.createElement('div');
